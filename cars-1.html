@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
 <body>
+ 
+
+  
+
+
 
 
 
@@ -22,12 +27,11 @@
 <input id='cell2' type="text"/>
 
 <button onclick="insRow()">Add</button>
-
+<button onclick="init_table()">Init</button>
 
 <p id="demo"></p>
 
 <script>
-
 
 
 function deleteRow(r)
@@ -50,7 +54,35 @@ p.innerHTML='<input type="button" value="Delete" onclick="deleteRow(this)"/>';
 }
 
 
+ car1={
 
+  brand:"Mazda",
+  model:"RX-8",
+
+ };
+ 
+ car2={
+
+brand:"Ford",
+model:"Focus",
+
+};
+
+var car_ar = [car1,car2];
+
+
+
+function init_table(cars){
+// функция инициализации
+console.log ("Brand", cars [0]);
+
+console.log("Model", cars [1]);
+
+}
+
+
+
+init_table(car_ar);
 
 
 
