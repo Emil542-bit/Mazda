@@ -1,88 +1,63 @@
 <!DOCTYPE html>
 <html>
 <body>
- 
-
-  
 
 
 
 
-
-<table id="myTable" border="1">
-  <tr>
-    <td>Ford</td>
-    <td>Focus</td>
-	<td><input type="button" value="Delete" onclick="deleteRow(this)"/></td>
-  </tr>
-  <tr>
-    <td>Mazda</td>
-    <td>RX-8</td>
-	<td><input type="button" value="Delete" onclick="deleteRow(this)"/></td>
-  </tr>
-</table>
-<br> 
-
-<input id='cell1' type="text"/>
-<input id='cell2' type="text"/>
-
-<button onclick="insRow()">Add</button>
-<button onclick="init_table()">Init</button>
-
-<p id="demo"></p>
+  <input type="text" id="brand" placeholder="Add a brand"></input>
+  <input type="text" id="model" placeholder="Add a Model"></input>
+  <button type="button" onClick="addRow()" id="add">Update</button>
+  <button type="button" onClick="deleteRow()" id="delete">Delete</button>
+  </div>
+  <table id="table">
+    <div class="tableDiv" <tr>
+      <th>Brands</th>
+      <th>Models</th>
+      <th>Select</th>
+      </tr>
+    </div>
+  </table>
 
 <script>
 
 
-function deleteRow(r)
-{
-var i=r.parentNode.parentNode.rowIndex;
-document.getElementById('myTable').deleteRow(i);
+
+const $brand = document.getElementById("brand")
+const $model = document.getElementById("model")
+
+const $table = document.getElementById("table")
+
+function addRow() {
+  
+  if ($brand.value == "" || $model.value == "") {
+    return alert("Make sure you enter a brand and a model!")
+  }  
+  
+  let $row = document.createElement("tr");
+  let $td1 = document.createElement("td");
+  let $td2 = document.createElement("td");
+  let $td3 = document.createElement("input");
+
+  $td3.setAttribute("type", "checkbox");
+
+  $td1.innerHTML = $brand.value;
+  $td2.innerHTML = $model.value;
+
+  $row.appendChild($td1);
+  $row.appendChild($td2);
+  $row.appendChild($td3);
+
+  $table.children[0].appendChild($row);
+
+  $brand.value = "";
+  $model.value = "";
 }
 
-
-
-function insRow()
-{
-var x=document.getElementById('myTable').insertRow(document.getElementById('myTable').rows.length);
-var y= x.insertCell(0);
-var z= x.insertCell(1);
-var p= x.insertCell(2);
-y.innerHTML=document.getElementById("cell1").value;
-z.innerHTML=document.getElementById("cell2").value;
-p.innerHTML='<input type="button" value="Delete" onclick="deleteRow(this)"/>';
+function deleteRow() {
+  let checkboxs = $table.querySelectorAll("input[type='checkbox']:checked")
+  checkboxs.forEach(checkbox => checkbox.parentElement.remove())
 }
-
-
- car1={
-
-  brand:"Mazda",
-  model:"RX-8",
-
- };
- 
- car2={
-
-brand:"Ford",
-model:"Focus",
-
-};
-
-var car_ar = [car1,car2];
-
-
-
-function init_table(cars){
-// функция инициализации
-console.log ("Brand", cars [0]);
-
-console.log("Model", cars [1]);
-
-}
-
-
-
-init_table(car_ar);
 
 
 
